@@ -1,0 +1,60 @@
+.container {
+
+    height: 180px;
+    width: 350px;
+    background-color: white;
+    margin-top: 150px;
+    border-radius: 5px;
+    border-color: 1px solid black;
+}
+
+form {
+    margin-top: 20px;
+}
+
+.text-center {
+    margin-top: 80px;
+}
+
+p {
+    padding-left: 5px;
+    padding-top: 10px;
+    color: black;
+
+}
+
+.new:hover {
+    color: green;
+}
+
+h3 {
+    font-family: Times;
+    color: white;
+}
+
+label {
+    color: black;
+    font-family: Times new roman;
+    font-size: 18px;
+}
+
+.bottom {
+    color: white;
+
+}
+
+#account {
+    color: white;
+}
+
+#account:hover {
+
+    color: white;
+}
+
+a:hover {
+
+    text-decoration: none;
+    color: green;
+
+}

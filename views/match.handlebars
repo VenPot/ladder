@@ -1,0 +1,139 @@
+<body>
+
+    <link rel="stylesheet" type="text/css" href="/match.css" />
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <h2 class="text-center ">Enter your scores</h2>
+                <div class="form-row ">
+                    <label class="labels" id="label1">{{matchDetails.proposer.first_name}}</label>
+                    <label class="labels hidden" id="label3">{{{matchDetailsStringed}}}</label>
+                    <input type="text" class="form-control " id="score1" value={{#if matchDetails.scores.score1}} {{matchDetails.scores.score1}} {{else}}0 {{/if}} />
+                    <span id="confirmMessage1" class="confirmMessage1"></span>
+                    <input type="text" class="form-control " id="score2" value={{#if matchDetails.scores.score2}} {{matchDetails.scores.score2}} {{else}}0 {{/if}} />
+                    <span id="confirmMessage2" class="confirmMessage2"></span>
+                    <input type="text" class="form-control " id="score3" value={{#if matchDetails.scores.score3}} {{matchDetails.scores.score3}} {{else}}0 {{/if}} />
+                    <span id="confirmMessage3" class="confirmMessage3"></span>
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <div class="form-row ">
+                    <label class="labels" id="label2">{{matchDetails.acceptedby.first_name}}</label>
+                    <input type="text" class="form-control" id="score4" value={{#if matchDetails.scores.score4}} {{matchDetails.scores.score4}} {{else}}0{{/if}} />
+                    <span id="confirmMessage4" class="confirmMessage4"></span>
+                    <input type="text" class="form-control" id="score5" value={{#if matchDetails.scores.score5}} {{matchDetails.scores.score5}} {{else}}0{{/if}} />
+                    <span id="confirmMessage5" class="confirmMessage5"></span>
+                    <input type="text" class="form-control" id="score6" value={{#if matchDetails.scores.score6}} {{matchDetails.scores.score6}} {{else}}0{{/if}} />
+                    <span id="confirmMessage6" class="confirmMessage6"></span>
+                </div>
+            </div>
+            <button type="button" onclick="myFunction()" class="btn btn-primary">Submit</button>
+            <span id="confirmMessage7" class="confirmMessage7"></span>
+        </form>
+    </div>
+    <script>
+        function myFunction() {
+            var a = document.getElementById("score1").value;
+            var b = document.getElementById("score2").value;
+            var c = document.getElementById("score3").value;
+            var d = document.getElementById("score4").value;
+            var e = document.getElementById("score5").value;
+            var f = document.getElementById("score6").value;
+            var message1 = document.getElementById("confirmMessage1");
+            var message2 = document.getElementById("confirmMessage2");
+            var message3 = document.getElementById("confirmMessage3");
+            var message4 = document.getElementById("confirmMessage4");
+            var message5 = document.getElementById("confirmMessage5");
+            var message6 = document.getElementById("confirmMessage6");
+
+
+            // If x is Not a Number or less than one or greater than 10
+            if (isNaN(a) || a < 1 || a > 10) {
+                message1 = "Input not valid";
+            }
+            else {
+                message1 = "Input OK";
+            }
+            document.getElementById("demo").innerHTML = text;
+            if (isNaN(b) || x < 1 || x > 10) {
+                message2.innerHTML = "not valid";
+                message2.style.color = "red";
+            }
+            else {
+                message2.innerHTML = " ";
+            }
+            if (isNaN(c) || x < 1 || x > 10) {
+                message3.innerHTML = "not valid";
+                message3.style.color = "red";
+            }
+            else {
+                message3.innerHTML = " ";
+            }
+            if (isNaN(d) || x < 1 || x > 10) {
+                message4.innerHTML = "not valid";
+                message4.style.color = "red";
+            }
+            else {
+                message4.innerHTML = " ";
+            }
+            if (isNaN(e) || x < 1 || x > 10) {
+                message5.innerHTML = "not valid";
+                message5.style.color = "red";
+            }
+            else {
+                message5.innerHTML = " ";
+            }
+            if (isNaN(f) || x < 1 || x > 10) {
+                message6.innerHTML = "not valid";
+                message6.style.color = "red";
+            }
+            else {
+                message6.innerHTML = " ";
+            }
+        }
+
+        $(document).ready(function() {
+            var message7 = document.getElementById("confirmMessage7");
+            var serverDetails = $('#label3').text();
+            console.log(serverDetails, typeof(serverDetails));
+            var matchDetails = JSON.parse(serverDetails);
+            console.log(matchDetails, typeof(matchDetails));
+
+            // $(".btn-primary").submit(function(e) { // e.preventDefault(); // });
+
+            $(".btn-primary ").click(function() {
+
+
+                var x = {
+                    proposer_id: matchDetails["proposer"]["profile_id"],
+                    acceptedby_id: matchDetails["acceptedby"]["profile_id"],
+                    scores: [
+                        [$("#score1").val(), $("#score4").val()],
+                        [$("#score2").val(), $("#score5").val()],
+                        [$("#score3").val(), $("#score6").val()]
+                    ],
+                    proposal_id: matchDetails.pid
+                }
+
+                console.log("calculated x is ", x)
+
+                $.post("/addMatchScores", x, function(result) {
+                    console.log(result);
+                    if (result != "mismatch") {
+                        console.log("success", result);
+                        window.location.replace('/getMatches')
+                    }
+                    else {
+                        message7.innerHTML = "sorry,this is not your match";
+                        message7.style.color = "red";
+                        document.signup.firstname.focus();
+                        //console.log("failure", result);
+                    }
+                });
+
+            });
+
+        });
+    </script>
+</body>

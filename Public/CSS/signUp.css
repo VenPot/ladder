@@ -1,0 +1,48 @@
+.container {
+    min-height: 400px;
+    width: 700px;
+    background-color: snow;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.form-group {
+    border-radius: 5px;
+    width: 300px;
+    margin-left: 35px;
+    margin-top: 5px;
+}
+
+input {
+
+    border-radius: 5px;
+
+}
+
+.btn {
+
+    width: 100px;
+
+}
+
+#skilllevel {
+    width: 20px;
+}
+
+h2 {
+    color: black;
+    font-family: Times;
+    margin-top: 8px;
+}
+
+label {
+
+    color: black;
+
+}
+
+.btn {
+
+
+    margin-top: 20px;
+}

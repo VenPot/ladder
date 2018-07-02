@@ -1,0 +1,84 @@
+body {
+
+    background-color: steelblue;
+}
+
+.navbar-custom {
+
+    background-color: black;
+    position: fixed;
+    width: 100%;
+}
+
+.icon-bar {
+    background-color: white;
+    height: 2px;
+}
+
+.navbar-brand {
+
+    margin-top: 15px;
+    color: white;
+    font-size: 25px;
+
+}
+
+span {
+
+    padding: 5px;
+}
+
+li {
+    border-right: 1px solid grey;
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+.navbar-right {
+
+    float: right;
+    margin-right: 30px;
+}
+
+#logout {
+    border-right-style: none;
+
+}
+
+.container {
+
+    height: 270px;
+    width: 300px;
+    background-color: white;
+    margin-top: 150px;
+    border-radius: 5px;
+    border-color: 1px solid black;
+}
+
+form {
+    margin-top: 25px;
+
+}
+
+.text-center {
+    margin-top: 80px;
+}
+
+label {
+    color: black;
+
+
+}
+
+.form-group {
+    border-radius: 5px;
+    width: 280px;
+    margin-top: -10px;
+}
+
+.btn {
+
+    width: 100%;
+    margin-top: -10px;
+
+}

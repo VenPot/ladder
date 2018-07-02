@@ -1,0 +1,19 @@
+.table {
+    margin-top: 50px;
+    background-color: white;
+    width: 800px;
+    border-collapse: collapse;
+
+}
+
+thead {
+    background-color: black;
+    color: white;
+
+}
+
+
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+}

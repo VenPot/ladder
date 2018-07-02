@@ -1,0 +1,85 @@
+body {
+
+    background-color: white;
+}
+
+.navbar-custom {
+
+    background-color: black;
+
+}
+
+.icon-bar {
+    background-color: white;
+    height: 2px;
+}
+
+.navbar-brand {
+
+    margin-top: 15px;
+    color: white;
+    font-size: 25px;
+
+}
+
+span {
+
+    padding: 5px;
+}
+
+li {
+    border-right: 1px solid grey;
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+.navbar-right {
+
+    float: right;
+    margin-right: 30px;
+}
+
+#logout {
+    border-right-style: none;
+}
+
+@media(max-width:700px) {
+    #login-dp {
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom {
+        background-color: inherit;
+        border-top: 0 none;
+    }
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+
+}
+
+.carousel-inner {
+    padding: auto;
+    margin: auto;
+    margin-top: -19px;
+    border-color: 15px solid gray;
+}
+
+.bg-4 {
+    background-color: black;
+    color: #ffffff;
+    height: 150px;
+
+
+}
+
+.contact {
+    font-family: Arial;
+    font-size: 15px;
+    margin-top: 50px;
+
+}

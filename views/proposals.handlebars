@@ -1,0 +1,93 @@
+<body>
+    <link rel="stylesheet" type="text/css" href="/messages.css" />
+    <div class="container">
+        <div class="table-responsive-sm">
+            <table class="table table-light table-striped table-bordered players_table center">
+
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Proposer</th>
+                        <th>Phone</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Acceptedby</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+
+        <script>
+            $(document).ready(function() {
+                $.get("/getProposals", function(proposaldata) {
+                    display(JSON.parse(proposaldata))
+                });
+
+                function display(players) {
+                    var list = "";
+                    console.log(players);
+                    for (var i = 0; i < players.length; i++) {
+                        var acceptor = "Open";
+                        var action = '<span><a href="#">Accept</a></span>';
+                        var status = "Pending";
+                        var classToUse = "notAccepted"
+                        var user = $('#userid').text()
+                        console.log('user is ', user)
+                        if (players[i].acceptedby_id) {
+                            acceptor = players[i].acceptedby_id.first_name;
+                            action = `<span><a href="/showMatch/${players[i].proposal_id}">Scores</a></span>`;
+                            classToUse = "Accepted"
+                            if (players[i]['acceptedby_id']['profile_id'] == user) {
+                                console.log("Enter here for ", players[i].acceptedby_id)
+                                action = action + `  <span><a href="/declineProposal/${players[i].proposal_id}">Decline</a></span>`
+                            }
+                        }
+                        if (players[i].status) { status = "Accepted" }
+
+                        if (players[i]['proposer_id'] && !players[i].acceptedby_id) {
+                            if (players[i]['proposer_id']['profile_id'] == user) {
+                                action = `<span><a href="/cancelProposal/${players[i].proposal_id}">Cancel</a></span>`
+                            }
+
+                        }
+
+                        list = list + '<tr>' +
+                            ' <td><b>' + players[i]['proposer_id']['first_name'] +
+                            '<td> ' + players[i].phone + '</td>' +
+                            ' <td>' + players[i].day.slice(5, 10).replace('-', '/') + '<td>' + players[i].timestamp +
+                            ' <td>' + players[i].location + ' <td id="status' + players[i].proposal_id + '"><b>' + status +
+                            '<td id="acceptor' + players[i].proposal_id + '">' +
+                            acceptor + '</td>' +
+                            +'<td>' + players[i].email +
+                            '<td id="cell' + players[i]['proposer_id']['profile_id'] + '">' + '<div class="' + classToUse + '" id="' + players[i].proposal_id +
+                            '" >' + action + '</div>' +
+                            '</tr>';
+                    }
+                    $(".players_table").append(list);
+
+
+                    $(".notAccepted").click(function() {
+                        var pid = $(this).attr("id");
+                        var self = this;
+                        var proposerId = $(this).parent().attr("id").substring(4)
+                        console.log("pid is ", pid, proposerId, typeof(proposerId));
+                        $.post("/acceptProposal", { "id": pid, "proposer_id": proposerId }, function(result) {
+                            //console.log(result);
+                            if (result) {
+                                $('#acceptor' + pid).html(result)
+                                $('#status' + pid).html("Accepted")
+                                $(self).html(' <span><a href="/showMatch/' + pid + '"  id=' + pid + '>Scores</a></span><span>  <a href="/declineProposal/' + pid + '">Decline</a></span>')
+                                $(self).addClass("Accepted");
+                                $(self).removeClass("notAccepted");
+
+                            }
+
+                        });
+                    });
+                }
+            });
+        </script>
+</body>

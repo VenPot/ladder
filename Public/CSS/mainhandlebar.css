@@ -1,0 +1,58 @@
+body {
+
+    background-color: steelblue;
+}
+
+.navbar-custom {
+
+    background-color: black;
+
+    width: 100%;
+    top: 0;
+}
+
+.icon-bar {
+    background-color: white;
+    height: 2px;
+}
+
+.navbar-brand {
+
+    margin-top: 15px;
+    color: white;
+    font-size: 25px;
+
+}
+
+span {
+
+    padding: 5px;
+}
+
+
+li {
+    border-right: 1px solid grey;
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+.navbar-right {
+
+    float: right;
+    margin-right: 30px;
+}
+
+#user {
+
+    color: white;
+    font-size: 20px;
+    font-family: verdana;
+    margin-top: 24px;
+    border-right-style: none;
+}
+
+#logout {
+    border-right-style: none;
+    margin-top: 11px;
+
+}

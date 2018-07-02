@@ -1,0 +1,34 @@
+<body>
+    <link rel="stylesheet" type="text/css" href="rankings.css" />
+    <div class="container">
+        <div class="table-responsive-sm">
+
+            <table class="table table-light table-bordered table-striped players_table center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Rank</th>
+                        <th>Won</th>
+                        <th>Lost</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {{#each rank}}
+                    <tr>
+
+                        <th>{{{name}}} </th>
+                        <th>{{{phone}}}</th>
+                        <th>{{{rank}}}</th>
+                        <th>{{{won}}}</th>
+                        <th>{{{lost}}}</th>
+                        <th>{{{points}}}</th>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>

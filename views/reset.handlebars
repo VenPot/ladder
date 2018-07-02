@@ -1,0 +1,86 @@
+<body>
+    <link rel="stylesheet" type="text/css" href="/reset.css">
+    <div class="container">
+        <form action='/updatePassword' name="reset" method="post" onSubmit="return validation_for_reset()" class="form" id="login-nav">
+
+
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="password" required/>
+                    <span id="confirmMessage5" class="confirmMessage5"></span>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="retype password">Retype password</label>
+                    <input type="password" name="retypepassword" class="form-control" id="retypepassword" placeholder="retype password" required/>
+                    <span id="confirmMessage6" class="confirmMessage6"></span>
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <div class="form-group ">
+                    <button type="submit" id="submitbutton" onclick="submitform()" class="btn btn-primary">Sign in</button>
+                </div>
+            </div>
+            {{#if message.status}}
+            <div class={{message.class}}>{{#if message.message}} {{message.message}} {{/if}}</div>
+            {{/if}}
+        </form>
+
+
+
+
+
+    </div>
+    </div>
+    <script type="text/javascript">
+        function validation_for_reset() {
+
+            var message5 = document.getElementById("confirmMessage5");
+            var message6 = document.getElementById("confirmMessage6");
+
+            if (document.reset.password.value == '') {
+
+                message5.innerHTML = "Please enter password";
+                message5.style.color = "red";
+                document.reset.password.focus();
+
+                return false;
+            }
+            else if (document.reset.password.value.length < 6) {
+
+                message5.innerHTML = "password is too short";
+                message5.style.color = "red";
+                document.reset.password.focus();
+                return false;
+            }
+            else {
+
+                message5.innerHTML = "";
+            }
+            if (document.reset.retypepassword.value == '') {
+
+                message6.innerHTML = "Please confirm password";
+                message6.style.color = "red";
+                document.reset.retypepassword.focus();
+
+                return false;
+            }
+            else if (document.reset.password.value != document.reset.retypepassword.value) {
+
+                message6.innerHTML = "Password does not match";
+                message6.style.color = "red";
+                document.reset.password.focus();
+                return false;
+            }
+            else {
+
+                message6.innerHTML = "matched";
+                message6.style.color = "green";
+            }
+
+
+        }
+    </script>
+</body>

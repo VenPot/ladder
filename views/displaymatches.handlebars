@@ -1,0 +1,31 @@
+<body>
+    <link rel="stylesheet" type="text/css" href="/displayMatches.css" />
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-striped players_table center">
+            <thead>
+                <tr>
+                    <th>Played</th>
+                    <th>Players</th>
+                    <th>Scores</th>
+                    <th>WP</th>
+                    <th>LP</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {{#each data}}
+                <tr>
+                    <th>Date</th>
+                    <th>{{{winner_profile_id}}} ({{{winner_rank}}}c) defeated {{{loser_profile_id}}} ({{{loser_rank}}}c) </th>
+                    <th>{{{set1_score}}}, {{{set2_score}}}, {{{set3_score}}}</th>
+                    <th>{{{winning_points}}}</th>
+                    <th>{{{losing_points}}}</th>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    </div>
+</body>

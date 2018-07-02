@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>signUp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="signUp.css" />
+
+</head>
+
+<body>
+    <nav class="navbar navbar-custom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h3><img src="logo.png" class="img1" />TennisClub</h3>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="messages.html">Proposals</a></li>
+                <li><a href="match1.html">Matches</a></li>
+                <li><a href="#">Ranking</a></li>
+                <li><a href="#">Rules</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <form action='/addProfile' name="signup" method="post" onSubmit="return validation_for_signup()" class="form" id="login-nav">
+            <h2 class="text-center">SignUp</h2>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="firstname">FirstName</label>
+                    <input type="text" name="fname" class="form-control" id="firstname" placeholder="firstname">
+                    <span id="confirmMessage1" class="confirmMessage1"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="lastname">LastName</label>
+                    <input type="text" name="lname" class="form-control" id="lastname" placeholder="lastname">
+                    <span id="confirmMessage2" class="confirmMessage2"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="email">
+                    <span id="confirmMessage3" class="confirmMessage3"></span>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="username">UserName</label>
+                    <input type="text" name="username" class="form-control" id="username" placeholder="username">
+                    <span id="confirmMessage4" class="confirmMessage4"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="password" />
+                    <span id="confirmMessage5" class="confirmMessage5"></span>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="retype password">Retype password</label>
+                    <input type="password" name="retypepassword" class="form-control" id="retypepassword" placeholder="retype password" />
+                    <span id="confirmMessage6" class="confirmMessage6"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="Phone">Telephone  Number</label>
+                    <input type="text" name="phone" class="form-control " id="inputphone " placeholder="phoneNo" minlength="10" maxlength="11">
+                    <span id="confirmMessage7" class="confirmMessage7"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="Optin ">Optin</label>
+                    <input type="text" name="optin" class="form-control " id="optin " placeholder="Optin">
+                    <span id="confirmMessage8" class="confirmMessage8"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-md-2">
+                    <label for="skilllevel" required>Skilllevel</label>
+                    <select class="form-control" name="skill" id="formcontrol">
+        <option>2.5</option>
+        <option>3.0</option>
+        <option>3.5</option>
+        <option>4.0</option>
+		</select>
+                </div>
+            </div>
+            <div class="form-group ">
+                <button type="submit" id="submitbutton" onclick="submitform()" class="btn btn-primary">Sign in</button>
+        </form>
+
+
+
+        </div>
+    </div>
+    <!-- <script type="text/javascript">
+        function submitform() {
+            var password = document.getElementById("password");
+            var retypepassword = document.getElementById("retypepassword");
+            var message = document.getElementById("confirmMessage");
+            var match = '#008000';
+            var notmatch = "#FF0000";
+            if (password.value != retypepassword.value) {
+                message.style.color = notmatch;
+                message.innerHTML = "password didn't match";
+
+
+
+            }
+            else {
+
+                message.style.color = match;
+                message.innerHTML = "password matched";
+                return true;
+
+            }
+
+        } 
+    </script> ---->
+    <script>
+        function validation_for_signup() {
+            var check_email = /^[\w\.]+@[a-zA-Z_]+?\.[a-zA-Z\.]{2,6}$/;
+            var check_username = /^[a-zA-Z0-9_]{3,16}$/;
+            var check_name = /^[a-zA-Z]{3,16}$/;
+            var check_phone = /^[0-9]{3,16}$/;
+            var message1 = document.getElementById("confirmMessage1");
+            var message2 = document.getElementById("confirmMessage2");
+            var message3 = document.getElementById("confirmMessage3");
+            var message4 = document.getElementById("confirmMessage4");
+            var message5 = document.getElementById("confirmMessage5");
+            var message6 = document.getElementById("confirmMessage6");
+            var message7 = document.getElementById("confirmMessage7");
+            var message8 = document.getElementById("confirmMessage8");
+            // var message9 = document.getElementById("confirmMessage9"); -->
+
+
+            if (document.signup.firstname.value == "") {
+
+                message1.innerHTML = "Please enter firstname";
+                message1.style.color = "red";
+                document.signup.firstname.focus();
+
+                return false;
+            }
+            else if (check_name.test(document.signup.firstname.value) == false) {
+
+                message1.innerHTML = "Invalid firstname";
+                message1.style.color = "red";
+                document.signup.firstname.focus();
+                return false;
+            }
+            else {
+
+                message1.innerHTML = " ";
+            }
+            if (document.signup.lastname.value == "") {
+
+                message2.innerHTML = "Please enter lastname";
+                message2.style.color = "red";
+                document.signup.lastname.focus();
+
+                return false;
+            }
+            else if (check_name.test(document.signup.lastname.value) == false) {
+
+                message2.innerHTML = "Invalid lastname";
+                message2.style.color = "red";
+                document.signup.lastname.focus();
+                return false;
+            }
+            else {
+
+                message2.innerHTML = " ";
+            }
+            if (document.signup.email.value == "") {
+
+                message3.innerHTML = "Please enter email";
+                message3.style.color = "red";
+                document.signup.email.focus();
+
+                return false;
+            }
+            else if (check_email.test(document.signup.email.value) == false) {
+                //alert('Invalid email');
+                message3.innerHTML = "Invalid email";
+                message3.style.color = "red";
+                document.signup.email.focus();
+                return false;
+            }
+            else {
+
+                message3.innerHTML = " ";
+            }
+            if (document.signup.username.value == "") {
+
+                message1.innerHTML = "Please enter username";
+                message1.style.color = "red";
+                document.signup.username.focus();
+                return false;
+            }
+            else if (check_username.test(document.signup.username.value) == false) {
+
+                message4.innerHTML = "Invalid username";
+                message4.style.color = "red";
+                document.signup.username.focus();
+                return false;
+            }
+            else {
+                message4.innerHTML = " ";
+
+            }
+            if (document.signup.password.value == '') {
+
+                message5.innerHTML = "Please enter password";
+                message5.style.color = "red";
+                document.signup.password.focus();
+            }
+            if (document.signup.username.value == document.signup.password.value) {
+                message5.innerHTML = "username and password should not be same";
+                message5.style.color = "red";
+                return false;
+
+            }
+
+            else if (document.signup.password.value.length < 6) {
+
+                message5.innerHTML = "password is too short";
+                message5.style.color = "red";
+                document.signup.password.focus();
+                return false;
+            }
+            else {
+
+                message5.innerHTML = "";
+            }
+            if (document.signup.retypepassword.value == '') {
+
+                message6.innerHTML = "Please confirm password";
+                message6.style.color = "red";
+                document.signup.retypepassword.focus();
+
+                return false;
+            }
+            else if (document.signup.password.value != document.signup.retypepassword.value) {
+
+                message6.innerHTML = "Password does not match";
+                message6.style.color = "red";
+                document.signup.password.focus();
+                return false;
+            }
+            else {
+
+                message6.innerHTML = "matched";
+                message6.style.color = "green";
+            }
+
+            if (document.signup.phone.value == "") {
+
+                message7.innerHTML = "Please enter firstname";
+                message7.style.color = "red";
+                document.signup.phone.focus();
+
+                return false;
+            }
+            else if (check_phone.test(document.signup.phone.value) == false) {
+
+                message7.innerHTML = "Invalid phone";
+                message7.style.color = "red";
+                document.signup.phone.focus();
+                return false;
+            }
+            else {
+
+                message7.innerHTML = " ";
+            }
+            if (document.signup.optin.value == "") {
+
+                message8.innerHTML = "Please enter optin";
+                message8.style.color = "red";
+                document.signup.optin.focus();
+
+                return false;
+            }
+            else if (check_optin.test(document.signup.optin.value) == false) {
+
+                message8.innerHTML = "Invalid optin";
+                message8.style.color = "red";
+                document.signup.optin.focus();
+                return false;
+            }
+            else {
+
+                message8.innerHTML = " ";
+            }
+        }
+    </script>
+</body>
+
+</html>

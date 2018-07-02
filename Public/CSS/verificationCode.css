@@ -1,0 +1,28 @@
+.container {
+    height: 185px;
+    width: 350px;
+    background-color: white;
+    margin-top: 160px;
+    border-radius: 5px;
+    border-color: 1px solid black;
+}
+
+label {
+    margin-top: 15px;
+    color: black;
+    padding-bottom: 10px;
+
+}
+
+#inputcode {
+    padding-top: 0px;
+}
+
+.col-md-4 {
+    margin-top: 0px;
+    width: 350px;
+}
+
+.btn {
+    width: 100%;
+}
